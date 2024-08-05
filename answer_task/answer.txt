@@ -1,0 +1,51 @@
+Question
+
+1. Migration la gi ?
+ - Migration theo e hieu nom na la nhung file quan li 
+version hay cac buoc xu li doi voi database nhu thuc hien 
+tao bang, cap nhat cac truong cua bang. Giup de dang quan li 
+cac thay doi lien quan den database.
+ - Trong class Migration co 2 ham:
+   + up(): su dung de update cac thay doi duoc viet ben trong ham 
+len database su dung lenh "php artisan migrate".
+   + down(): su dung de reverse lai cac thay doi duoc viet trong ham up().
+ - Migration co mot vai lenh co ban:
++ "php artisan make:migration create_flights_table": tao migration
++ "php artisan migrate": chay migration
++ "php artisan migrate:status": kiem tra migration nao da chay
++ "php artisan migrate:rollback": undo migration
++ "php artisan migrate:reset": undo moi migration
++ "php artisan migrate:refresh": rollback moi migration va migrate lai tu dau
+
+2. Mass assignment:
+ - Gia su co 1 form dien du lieu nhu sau:
+      <form method="POST" action="/signup">
+        <input type="text" name="name" />
+        <input type="text" name="user_name" />
+        <input type="text" name="password" />
+        <input type="text" name="address" />
+        <input type="text" name="city" />
+        <button type="submit">Signup</button>
+      </form>
+  Thong thuong de dien du lieu tren vao database ta phai
+  setting nhu sau trong Controller:
+  public function store(Request $request)
+  {
+    $user = new User;
+
+    $user->name = $request->get('name');
+    $user->user_name = $request->get('user_name');
+    $user->password = bcrypt($request->get('password'));
+    $user->address = $request->get('address');
+    $user->city = $request->get('city');
+
+    $user->save();
+  }
+  Laravel Eloquent ORM cung cấp một phương thức create 
+  giúp bạn lưu tất cả dữ liệu đầu vào chỉ với một dòng duy nhat.
+  public function store(UserFormRequest $request)
+  {
+    $user = User::create($request->validated());
+  } 
+  La nhung gi em doc duoc ve Mass assignment.
+
