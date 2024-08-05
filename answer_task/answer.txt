@@ -1,26 +1,51 @@
-Question:
+Question
 
-1. Cach tao project Laravel
+1. Migration la gi ?
+ - Migration theo e hieu nom na la nhung file quan li 
+version hay cac buoc xu li doi voi database nhu thuc hien 
+tao bang, cap nhat cac truong cua bang. Giup de dang quan li 
+cac thay doi lien quan den database.
+ - Trong class Migration co 2 ham:
+   + up(): su dung de update cac thay doi duoc viet ben trong ham 
+len database su dung lenh "php artisan migrate".
+   + down(): su dung de reverse lai cac thay doi duoc viet trong ham up().
+ - Migration co mot vai lenh co ban:
++ "php artisan make:migration create_flights_table": tao migration
++ "php artisan migrate": chay migration
++ "php artisan migrate:status": kiem tra migration nao da chay
++ "php artisan migrate:rollback": undo migration
++ "php artisan migrate:reset": undo moi migration
++ "php artisan migrate:refresh": rollback moi migration va migrate lai tu dau
 
-a, Su dung composer:
-composer create-project laravel/laravel example-app
+2. Mass assignment:
+ - Gia su co 1 form dien du lieu nhu sau:
+      <form method="POST" action="/signup">
+        <input type="text" name="name" />
+        <input type="text" name="user_name" />
+        <input type="text" name="password" />
+        <input type="text" name="address" />
+        <input type="text" name="city" />
+        <button type="submit">Signup</button>
+      </form>
+  Thong thuong de dien du lieu tren vao database ta phai
+  setting nhu sau trong Controller:
+  public function store(Request $request)
+  {
+    $user = new User;
 
-b, Su dung Laravel Installer
- - Cai dat installer bang composer:
-   composer global require laravel/installer
- - Su dung Installer de cai app Laravel:
-   laravel new example-app
+    $user->name = $request->get('name');
+    $user->user_name = $request->get('user_name');
+    $user->password = bcrypt($request->get('password'));
+    $user->address = $request->get('address');
+    $user->city = $request->get('city');
 
-2. Muc dich cac folder ben trong prj:
- - app: Thu muc chua cac core code cua app
- - bootstrap: chua file app.php giup ket noi?? framework dong thoi chua folder cache chua cac file framework da duoc tao de toi uu hoa toc do
- - config: chua cac file cai dat cho app
- - database: chua cac cai dat ve database
- - public: chua file index.php la diem dau vao cho moi request den app
- - resource: chua cac view cung nhu cac file js, css
- - routes: folder chua file dieu huong cho app
- - storage: chua cac log trong qua trinh chay app cung nhu sessions, caches
- - tests: ehhh folder nay thi e cung chua ro no de lam gi chac la dung de test tinh nang gi do
- - vendor: theo em hieu nom na thi no kieu kieu cai thu vien chua cac class cua composer
+    $user->save();
+  }
+  Laravel Eloquent ORM cung cấp một phương thức create 
+  giúp bạn lưu tất cả dữ liệu đầu vào chỉ với một dòng duy nhat.
+  public function store(UserFormRequest $request)
+  {
+    $user = User::create($request->validated());
+  } 
+  La nhung gi em doc duoc ve Mass assignment.
 
-3. Em co dinh kem anh tai cung hieu qua loa
