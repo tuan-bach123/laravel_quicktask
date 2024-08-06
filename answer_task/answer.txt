@@ -1,0 +1,15 @@
+Question
+
+1. Relationship trong Laravel:
+- One to One: dung HasOne va BelongsTo
+- One to Many: dung HasMany va BelongsTo
+- Many to Many: ca hay deu dung BelongsToMany
+
+2. 
+- attach(): su dung de them quan he cho cac model co quan he n-n 
+vao bang trung gian.
+- detach(): su dung de bo quan he trong bang trung gian, nguoc lai voi attach.
+- toggle(): se khien nhung quan he bi detach attach lai va attach duoc detach.
+- sync(): se attach nhung id duoc truyen vao ham va detach het nhung id khong co.
+
+3. Ta su dung attribute pivot de lay data tu bang trung gian.
