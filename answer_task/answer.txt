@@ -1,0 +1,15 @@
+Question
+
+1. Accessor duoc su dung de modify dau ra chi mot attribute cua module
+   Mutator thi nguoc lai chung duoc su dung de modify dau vao cho attribute cua module
+
+2. Accessor hay Mutator co cach tao kha tuong dong
+   protected function accessor_name(): attribute
+   {
+      return Attribute::make(get/set(neu la Mutator): fn (datatype $value) => (
+            $returnData
+         )
+      );
+   }
+
+3. 
