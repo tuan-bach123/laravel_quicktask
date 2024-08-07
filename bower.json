@@ -1,0 +1,21 @@
+{
+  "name": "laravel_quicktask",
+  "description": "",
+  "main": "",
+  "authors": [
+    "tuan-bach123 <pham.tuan.bach@sun-asterisk.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/tuan-bach123/laravel_quicktask",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "argon-dashboard-laravel": "https://github.com/tuan-bach123/argon-dashboard-laravel.git"
+  }
+}

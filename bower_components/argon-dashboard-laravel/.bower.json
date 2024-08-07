@@ -1,0 +1,14 @@
+{
+  "name": "argon-dashboard-laravel",
+  "homepage": "https://github.com/tuan-bach123/argon-dashboard-laravel",
+  "_release": "6bf54b40bc",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6bf54b40bcd49e6aa749c96e8bc6f03ccbfc7403"
+  },
+  "_source": "https://github.com/tuan-bach123/argon-dashboard-laravel.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/tuan-bach123/argon-dashboard-laravel.git",
+  "_direct": true
+}
