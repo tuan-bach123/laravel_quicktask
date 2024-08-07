@@ -1,0 +1,10 @@
+Question
+
+1. Middleware provide a convenient mechanism for inspecting and filtering HTTP requests entering your application. 
+For example, Laravel includes a middleware that verifies the user of your application is authenticated. If the 
+user is not authenticated, the middleware will redirect the user to your application's login screen. However, if 
+the user is authenticated, the middleware will allow the request to proceed further into the application.
+
+2. Global Middleware: a middleware to run during every HTTP request to your application.
+   Group Middleware: group multiple middleware under a single key to make it easier to assign into a route.
+   Route Middleware: a middleware assign into a route using chain.
