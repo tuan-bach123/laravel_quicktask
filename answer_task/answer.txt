@@ -1,0 +1,8 @@
+Question
+
+1. Seeder vaf Factory deu giup ta co the chen du lieu default cho database
+mot cach nhanh chong va tien loi.
+
+2. Trong truong hop muon chen it du lieu va muon du lieu do trong truc quan ta
+se dung seeder con neu muon generate nhieu data ma khong qua quan trong den noi 
+dung ta co the dung factory.
