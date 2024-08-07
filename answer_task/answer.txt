@@ -1,15 +1,8 @@
 Question
 
-1. Accessor duoc su dung de modify dau ra chi mot attribute cua module
-   Mutator thi nguoc lai chung duoc su dung de modify dau vao cho attribute cua module
+1. Seeder vaf Factory deu giup ta co the chen du lieu default cho database
+mot cach nhanh chong va tien loi.
 
-2. Accessor hay Mutator co cach tao kha tuong dong
-   protected function accessor_name(): attribute
-   {
-      return Attribute::make(get/set(neu la Mutator): fn (datatype $value) => (
-            $returnData
-         )
-      );
-   }
-
-3. 
+2. Trong truong hop muon chen it du lieu va muon du lieu do trong truc quan ta
+se dung seeder con neu muon generate nhieu data ma khong qua quan trong den noi 
+dung ta co the dung factory.
