@@ -1,8 +1,18 @@
 Question
 
-1. Seeder vaf Factory deu giup ta co the chen du lieu default cho database
-mot cach nhanh chong va tien loi.
+1. Cau truc chung mot route: 
+Route::get('/users', [UserController::class, 'index'])->name('users.index')
 
-2. Trong truong hop muon chen it du lieu va muon du lieu do trong truc quan ta
-se dung seeder con neu muon generate nhieu data ma khong qua quan trong den noi 
-dung ta co the dung factory.
+Route: ten class route
+get: loai phuong thuc gom (get, post, put, delete)
+ben trong phuong thuc se la cac tham so: url path, phuong thuc tuong ung ben controller
+sau co co the them cac setting kem theo nhu doi ten "name()"...
+
+2. Resource controller:
+index: lay tat ca du lieu co trong database cua model
+create: goi den view create model
+store: luu instance moi vao database
+show: lay du lieu cua 1 instance theo index
+edit: goi den view edit du lieu cho 1 instance
+update: luu thay doi vao database
+destroy: xoa 1 instance trong database
