@@ -12,6 +12,16 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+
+            @if (auth()->user()->is_admin)
+                <x-primary-button class="mt-4" onclick="window.location=`{{ route('users.index') }}`">
+                    {{ __("View users") }}
+                </x-primary-button>
+            @endif
+            
+            <x-primary-button class="mt-4" onclick="window.location=`{{ route('users.show', auth()->user()->id) }}`">
+                {{ __("Check tasks") }}
+            </x-primary-button>
         </div>
     </div>
 </x-app-layout>

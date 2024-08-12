@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  use Illuminate\Foundation\Auth\User as Authenticatable;
 
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -39,7 +38,7 @@ class User extends Authenticatable
         'remember_token',
     ];
     
-    protected $guarded = ['is_admin'];
+    protected $guarded = [''];
 
     /**
      * Get the attributes that should be cast.
@@ -58,7 +57,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: fn (mixed $value, array $attributes) => (
-                $attributes['first_name'] . $attributes['full_name']
+                $attributes['first_name'] . $attributes['last_name']
             ),
         );
     }
@@ -74,6 +73,6 @@ class User extends Authenticatable
 
     public function tasks(): HasMany
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class, 'user_id', 'id');
     }
 }

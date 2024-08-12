@@ -11,14 +11,16 @@ class CheckAdmin
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->is_admin !== 1) {
-            //return redirect('home');
-        }
+        $user = auth()->user();
 
-        return $next($request);
+        if ($user && $user->is_admin) {
+            return $next($request);
+        } else {
+            return redirect()->back();
+        }
     }
 }

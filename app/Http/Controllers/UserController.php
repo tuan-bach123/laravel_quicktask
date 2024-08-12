@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
+use DB;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return $users;
+        return view("users.index", ["users" => $users]);
     }
 
     /**
@@ -23,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //return View::make('users.create');
+        return view("users.create");
     }
 
     /**
@@ -49,6 +51,9 @@ class UserController extends Controller
         $user->first_name = $request->input("first_name");
         $user->password = Hash::make($request->input("password"));
         $user->save();
+
+        $users = User::all();
+        return view("users.index", ["users" => $users]);
     }
 
     /**
@@ -56,7 +61,10 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return User::findOrFail($id);
+        $user = User::findOrFail($id);
+        $tasks = $user->tasks()->orderBy("id", "desc")->get()->all();
+
+        return view("users.show", ["user" => $user, "tasks" => $tasks]);
     }
 
     /**
@@ -65,7 +73,7 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
-        //return view("", compact("user"));
+        return view("users.edit", compact("user"));
     }
 
     /**
@@ -74,10 +82,11 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         $user = User::findOrFail($id);
-        $user->email = $request->input("email");
         $user->last_name = $request->input("last_name");
         $user->first_name = $request->input("first_name");
         $user->save();
+
+        $this->show($user->id);
     }
 
     /**
@@ -86,6 +95,14 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user = User::findOrFail($id);
+
+        $tasks = $user->tasks()->orderBy("id", "desc")->get()->all();
+        foreach ($tasks as $index => $task) {
+            $task->delete();
+        }
+
         $user->delete();
+
+        $this->index();
     }
 }

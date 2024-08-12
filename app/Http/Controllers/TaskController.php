@@ -19,9 +19,10 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //return View::make('tasks.create');
+        return view('tasks.create', ['user_id' => request()->user_id]);
+
     }
 
     /**
@@ -32,7 +33,10 @@ class TaskController extends Controller
         $task = new Task();
         $task->title = $request->input("title");
         $task->content = $request->input("content");
+        $task->user_id = request()->user_id;
         $task->save();
+
+        return redirect()->back()->with("success","");
     }
 
     /**
@@ -49,7 +53,7 @@ class TaskController extends Controller
     public function edit(string $id)
     {
         $task = Task::findOrFail($id);
-        //return view("", compact("task"));
+        return view("tasks.edit", compact("task"));
     }
 
     /**
@@ -61,6 +65,8 @@ class TaskController extends Controller
         $task->title = $request->input("title");
         $task->content = $request->input("content");
         $task->save();
+
+        return redirect('/dashboard')->with("success","");
     }
 
     /**
@@ -70,5 +76,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->delete();
+
+        return redirect()->back()->with("success","");
     }
 }
